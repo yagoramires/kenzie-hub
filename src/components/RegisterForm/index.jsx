@@ -1,12 +1,17 @@
-import React from 'react';
-import { Container, Title, Text } from './styles';
+import { Container, Title, Text, FormSelect } from './styles';
+
 import { useForm } from 'react-hook-form';
-import Input from '../Input';
-
-import Button from '../Button';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { RegisterSchema } from './RegisterSchema';
+
+import Input from '../Input';
+import Button from '../Button';
+
+import { api } from '../../services/api';
+
+import { useNavigate } from 'react-router-dom';
+
+import { toast } from 'react-toastify';
 
 const RegisterForm = () => {
   const {
@@ -17,13 +22,22 @@ const RegisterForm = () => {
     resolver: zodResolver(RegisterSchema),
   });
 
-  const handleRegister = (formData) => {
-    console.log(formData);
+  const navigate = useNavigate();
+
+  const handleRegister = async (formData) => {
+    try {
+      await api.post('/users', formData);
+      toast.success('Usuário cadastrado com sucesso.');
+      navigate('/login');
+    } catch (e) {
+      console.log(e);
+      toast.error(e.response.data.message);
+    }
   };
 
   return (
     <Container onSubmit={handleSubmit(handleRegister)}>
-      <Title>Login</Title>
+      <Title>Cadastro</Title>
       <Text>Rapido e grátis, vamos nessa</Text>
       <Input
         label={'Nome'}
@@ -73,14 +87,25 @@ const RegisterForm = () => {
         register={register}
         error={errors?.contact?.message}
       />
-      <Input
-        label={'Selecionar Módulo'}
-        id={'course_module'}
-        placeholder={'Primeiro Módulo'}
-        type={'string'}
-        register={register}
-        error={errors?.course_module?.message}
-      />
+
+      <FormSelect
+        name='course_module'
+        id='course_module'
+        {...register('course_module')}
+      >
+        <option value='Primeiro módulo (Introdução ao Frontend)'>
+          Primeiro módulo (Introdução ao Frontend)
+        </option>
+        <option value='Segundo módulo (Frontend Avançado)'>
+          Segundo módulo (Frontend Avançado)
+        </option>
+        <option value='Terceiro módulo (Introdução ao Backend)'>
+          Terceiro módulo (Introdução ao Backend)
+        </option>
+        <option value='Quarto módulo (Backend Avançado)'>
+          Quarto módulo (Backend Avançado)
+        </option>
+      </FormSelect>
 
       <Button color='primary' text='Cadastre-se' type='submit' />
     </Container>

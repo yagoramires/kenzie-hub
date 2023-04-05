@@ -30,3 +30,21 @@ export const Text = styled.p`
   text-align: center;
   margin-bottom: 22px;
 `;
+
+export const FormSelect = styled.select`
+  width: 100%;
+  background: var(--gray-2);
+  border: none;
+  border-radius: 4px;
+  padding: 16px;
+  color: var(--gray-0);
+  margin: 16px 0 8px;
+
+  ::placeholder {
+    color: #868e96;
+  }
+
+  :focus::placeholder {
+    color: var(--gray-0);
+  }
+`;

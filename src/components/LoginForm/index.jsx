@@ -2,13 +2,16 @@ import React from 'react';
 import { Container, Title, Redirect, Text } from './styles';
 import { useForm } from 'react-hook-form';
 import Input from '../Input';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../Button';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginSchema } from './LoginFormSchema';
+import { api } from '../../services/api';
 
-const LoginForm = () => {
+import { toast } from 'react-toastify';
+
+const LoginForm = ({ setUser }) => {
   const {
     register,
     handleSubmit,
@@ -17,8 +20,21 @@ const LoginForm = () => {
     resolver: zodResolver(LoginSchema),
   });
 
-  const handleLogin = (formData) => {
-    console.log(formData);
+  const navigate = useNavigate();
+
+  const handleLogin = async (formData) => {
+    try {
+      const res = await api.post('/sessions', formData);
+      localStorage.setItem('@TOKEN', res.data.token);
+      localStorage.setItem('@USERID', res.data.user.id);
+
+      setUser(res.data.user);
+
+      navigate('/home');
+    } catch (e) {
+      console.log(e);
+      toast.error(e.response.data.message);
+    }
   };
 
   return (

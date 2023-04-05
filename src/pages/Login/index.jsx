@@ -3,15 +3,11 @@ import { Container } from './styles';
 import Navbar from '../../components/Navbar';
 import LoginForm from '../../components/LoginForm';
 
-const Login = () => {
-  const handleLogin = (formData) => {
-    console.log(formData);
-  };
-
+const Login = ({ setUser }) => {
   return (
     <Container>
       <Navbar />
-      <LoginForm title={'Login'} submitForm={handleLogin} />
+      <LoginForm setUser={setUser} />
     </Container>
   );
 };
