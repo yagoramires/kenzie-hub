@@ -16,8 +16,11 @@ import {
 } from './styles';
 import { UserContext } from '../../context/UserContext';
 import Button from '../../components/Button';
+import AddModal from '../../components/AddModal';
 
 const Home = () => {
+  const [openModal, setOpenModal] = useState(false);
+
   const { user, handleLogout } = useContext(UserContext);
 
   console.log(user);
@@ -40,9 +43,10 @@ const Home = () => {
       <Main>
         <CenterContainer>
           <MainContainer>
+            <AddModal openModal={openModal} closeModal={setOpenModal} />
             <MainHeader>
               <MainTitle>Tecnologias</MainTitle>
-              <Button color='gray-1' text='+' />
+              <button onClick={() => setOpenModal(true)}>+</button>
             </MainHeader>
             <Technologies>
               <TechnologyCard>

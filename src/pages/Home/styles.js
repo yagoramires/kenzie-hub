@@ -37,7 +37,17 @@ export const MainHeader = styled.div`
   gap: 24px;
 
   button {
-    max-width: 50px;
+    border: none;
+    background: var(--gray-3);
+    color: var(--gray-0);
+    border-radius: 4px;
+    font-size: 22px;
+    line-height: 10px;
+    font-weight: 700;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    cursor: pointer;
   }
 `;
 
