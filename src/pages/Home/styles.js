@@ -4,7 +4,7 @@ export const Container = styled.div``;
 
 export const CenterContainer = styled.div`
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 780px;
   padding: 0 12px;
 `;
 
@@ -13,7 +13,7 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 780px) {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
@@ -29,6 +29,76 @@ export const MainContainer = styled.div`
   gap: 24px;
 `;
 
+export const MainHeader = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+
+  button {
+    max-width: 50px;
+  }
+`;
+
+export const Technologies = styled.div`
+  margin-top: 20px;
+  padding: 22px;
+  background: var(--gray-3);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border-radius: 3px;
+
+  button {
+    max-width: 50px;
+  }
+
+  @media (max-width: 780px) {
+    padding: 22px 8.5px;
+  }
+`;
+
+export const TechnologyCard = styled.div`
+  padding: 13px 22px;
+  background: var(--gray-4);
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-radius: 4px;
+
+  cursor: pointer;
+
+  h3 {
+    color: var(--gray-0);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  span {
+    color: var(--gray-1);
+    font-size: 12px;
+  }
+
+  :hover {
+    background: var(--gray-2);
+
+    span {
+      color: var(--gray-0);
+    }
+  }
+
+  @media (max-width: 780px) {
+    padding: 12px;
+  }
+`;
+
 export const Header = styled.header`
   padding: 45px 0;
   border-top: 1px solid var(--gray-3);
@@ -36,21 +106,28 @@ export const Header = styled.header`
 `;
 
 export const Main = styled.main`
-  padding: 45px 0;
+  padding: 18px 0;
 `;
 
-export const Title = styled.main`
+export const Title = styled.h2`
   font-size: 18px;
   font-weight: bold;
   color: var(--gray-0);
 `;
 
-export const HeaderText = styled.main`
+export const MainTitle = styled.h2`
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gray-0);
+`;
+
+export const HeaderText = styled.p`
   font-size: var(--headline);
   color: var(--gray-1);
 `;
 
-export const MainText = styled.main`
+export const MainText = styled.p`
   font-size: var(--title-2);
   color: var(--gray-0);
 `;

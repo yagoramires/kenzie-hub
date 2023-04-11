@@ -7,13 +7,12 @@ import { RegisterSchema } from './RegisterSchema';
 import Input from '../Input';
 import Button from '../Button';
 
-import { api } from '../../services/api';
-
-import { useNavigate } from 'react-router-dom';
-
-import { toast } from 'react-toastify';
+import { useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 
 const RegisterForm = () => {
+  const { handleRegister } = useContext(UserContext);
+
   const {
     register,
     handleSubmit,
@@ -21,19 +20,6 @@ const RegisterForm = () => {
   } = useForm({
     resolver: zodResolver(RegisterSchema),
   });
-
-  const navigate = useNavigate();
-
-  const handleRegister = async (formData) => {
-    try {
-      await api.post('/users', formData);
-      toast.success('Usuário cadastrado com sucesso.');
-      navigate('/login');
-    } catch (e) {
-      console.log(e);
-      toast.error(e.response.data.message);
-    }
-  };
 
   return (
     <Container onSubmit={handleSubmit(handleRegister)}>

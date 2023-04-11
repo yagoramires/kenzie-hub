@@ -1,16 +1,13 @@
-import { useState } from 'react';
 import { GlobalStyle } from './styles/GlobalStyle';
 import Routes from './Routes';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function App() {
-  const [user, setUser] = useState(null);
-
+const App = () => {
   return (
     <div className='App'>
-      <Routes user={user} setUser={setUser} />
+      <Routes />
       <GlobalStyle />
       <ToastContainer
         theme='dark'
@@ -19,6 +16,6 @@ function App() {
       />
     </div>
   );
-}
+};
 
 export default App;

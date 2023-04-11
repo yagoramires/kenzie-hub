@@ -9,6 +9,7 @@ export const StyledButton = styled.button`
   cursor: pointer;
   transition: all 0.2s;
   width: 100%;
+  text-align: center;
 
   background: ${({ color }) => {
     if (color === 'primary') {
@@ -17,8 +18,8 @@ export const StyledButton = styled.button`
         `;
     } else if (color === 'gray-1') {
       return css`
-        var(--gray-1) 
-    `;
+        var(--gray-3) 
+        `;
     }
   }};
 
@@ -27,10 +28,10 @@ export const StyledButton = styled.button`
       if (color === 'primary') {
         return css`
        var(--color-primary-focus) 
-        `;
+       `;
       } else if (color === 'gray-1') {
         return css`
-        var(--gray-2) 
+        var(--gray-1) 
     `;
       }
     }};

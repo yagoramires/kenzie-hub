@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar';
 import {
   Container,
@@ -9,46 +9,23 @@ import {
   Main,
   Title,
   HeaderText,
-  MainText,
+  MainHeader,
+  MainTitle,
+  Technologies,
+  TechnologyCard,
 } from './styles';
-import { api } from '../../services/api';
-import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../context/UserContext';
+import Button from '../../components/Button';
 
-const Home = ({ user }) => {
-  const navigate = useNavigate();
+const Home = () => {
+  const { user, handleLogout } = useContext(UserContext);
 
-  useEffect(() => {
-    const token = localStorage.getItem('@TOKEN');
-    getUserProfile(token);
-  }, []);
-
-  const getUserProfile = async (token) => {
-    try {
-      const res = await api.get('/profile', {
-        headers: {
-          Authorization: 'Bearer ' + token,
-        },
-      });
-
-      if (res.status !== 200) {
-        navigate('/login');
-      }
-    } catch (e) {
-      navigate('/login');
-      console.log(e);
-    }
-  };
-
-  const logoutUser = () => {
-    localStorage.removeItem('@TOKEN');
-    localStorage.removeItem('@USERID');
-    navigate('/login');
-  };
+  console.log(user);
 
   return (
     <Container>
       <CenterContainer>
-        <Navbar type={'logout'} fn={logoutUser} />
+        <Navbar type={'logout'} fn={handleLogout} />
       </CenterContainer>
 
       <Header>
@@ -63,11 +40,28 @@ const Home = ({ user }) => {
       <Main>
         <CenterContainer>
           <MainContainer>
-            <Title>Que pena! Estamos em desenvolvimento :(</Title>
-            <MainText>
-              Nossa aplicação está em desenvolvimento, em breve teremos
-              novidades
-            </MainText>
+            <MainHeader>
+              <MainTitle>Tecnologias</MainTitle>
+              <Button color='gray-1' text='+' />
+            </MainHeader>
+            <Technologies>
+              <TechnologyCard>
+                <h3>React JS</h3>
+                <span>Avançado</span>
+              </TechnologyCard>
+              <TechnologyCard>
+                <h3>React JS</h3>
+                <span>Avançado</span>
+              </TechnologyCard>
+              <TechnologyCard>
+                <h3>React JS</h3>
+                <span>Avançado</span>
+              </TechnologyCard>
+              <TechnologyCard>
+                <h3>React JS</h3>
+                <span>Avançado</span>
+              </TechnologyCard>
+            </Technologies>
           </MainContainer>
         </CenterContainer>
       </Main>
