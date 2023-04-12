@@ -7,8 +7,8 @@ import { Container, Modal, ModalHeader, FormSelect, ModalForm } from './styles';
 import { useContext } from 'react';
 import { TechContext } from '../../context/TechContex';
 
-const AddModal = ({ openModal, closeModal }) => {
-  const { handleAddTech } = useContext(TechContext);
+const AddModal = ({ openModal, setOpenModal }) => {
+  const { addTechOnApi } = useContext(TechContext);
 
   const {
     register,
@@ -18,6 +18,11 @@ const AddModal = ({ openModal, closeModal }) => {
     resolver: zodResolver(TechsSchema),
   });
 
+  const handleAddTech = (formData) => {
+    addTechOnApi(formData);
+    setOpenModal(false);
+  };
+
   return (
     <Container open={openModal}>
       <Modal>
@@ -25,7 +30,7 @@ const AddModal = ({ openModal, closeModal }) => {
           <h2>Cadastrar Tecnologia</h2>
           <button
             onClick={() => {
-              closeModal(false);
+              setOpenModal(false);
             }}
           >
             X
@@ -34,18 +39,16 @@ const AddModal = ({ openModal, closeModal }) => {
         <ModalForm onSubmit={handleSubmit(handleAddTech)}>
           <Input
             label={'Nome'}
-            id={'name'}
+            id={'title'}
             placeholder={'Digite o nome da tecnologia'}
             type={'text'}
             register={register}
-            error={errors?.name?.message}
+            error={errors?.title?.message}
           />
           <FormSelect name='status' id='status' {...register('status')}>
             <option value='Iniciante'>Iniciante</option>
             <option value='Intermediário'>Intermediário</option>
-            <option value='Terceiro módulo (Introdução ao Backend)'>
-              Avançado
-            </option>
+            <option value='Avançado'>Avançado</option>
           </FormSelect>
 
           <Button

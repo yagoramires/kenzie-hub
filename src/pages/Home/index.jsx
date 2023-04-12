@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
-import Navbar from '../../components/Navbar';
+import { useContext, useState } from 'react';
 import {
   Container,
   CenterContainer,
@@ -12,18 +11,19 @@ import {
   MainHeader,
   MainTitle,
   Technologies,
-  TechnologyCard,
 } from './styles';
-import { UserContext } from '../../context/UserContext';
-import Button from '../../components/Button';
+import Navbar from '../../components/Navbar';
 import AddModal from '../../components/AddModal';
+import TechnologyCard from '../../components/TechnologyCard';
+
+import { UserContext } from '../../context/UserContext';
+import { TechContext } from '../../context/TechContex';
 
 const Home = () => {
   const [openModal, setOpenModal] = useState(false);
 
   const { user, handleLogout } = useContext(UserContext);
-
-  console.log(user);
+  const { techs } = useContext(TechContext);
 
   return (
     <Container>
@@ -43,28 +43,16 @@ const Home = () => {
       <Main>
         <CenterContainer>
           <MainContainer>
-            <AddModal openModal={openModal} closeModal={setOpenModal} />
+            <AddModal openModal={openModal} setOpenModal={setOpenModal} />
             <MainHeader>
               <MainTitle>Tecnologias</MainTitle>
               <button onClick={() => setOpenModal(true)}>+</button>
             </MainHeader>
             <Technologies>
-              <TechnologyCard>
-                <h3>React JS</h3>
-                <span>Avançado</span>
-              </TechnologyCard>
-              <TechnologyCard>
-                <h3>React JS</h3>
-                <span>Avançado</span>
-              </TechnologyCard>
-              <TechnologyCard>
-                <h3>React JS</h3>
-                <span>Avançado</span>
-              </TechnologyCard>
-              <TechnologyCard>
-                <h3>React JS</h3>
-                <span>Avançado</span>
-              </TechnologyCard>
+              {techs.length > 0 &&
+                techs.map((tech, index) => (
+                  <TechnologyCard key={index} tech={tech} />
+                ))}
             </Technologies>
           </MainContainer>
         </CenterContainer>

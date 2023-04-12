@@ -78,3 +78,68 @@ export const FormSelect = styled.select`
     color: var(--gray-0);
   }
 `;
+
+export const Fieldset = styled.fieldset`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border: none;
+`;
+export const Label = styled.label`
+  color: var(--gray-0);
+  font-size: var(--headline);
+`;
+
+export const Error = styled.span`
+  color: #868e96;
+  font-size: 10px;
+`;
+
+export const FormInput = styled.input`
+  width: 100%;
+  background: var(--gray-2);
+  border: none;
+  border-radius: 4px;
+  padding: 16px;
+  color: var(--gray-0);
+  margin: 16px 0 8px;
+
+  ::placeholder {
+    color: #868e96;
+  }
+
+  :focus::placeholder {
+    color: var(--gray-0);
+  }
+`;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+
+  button:nth-of-type(1) {
+    flex: 1;
+    width: 100%;
+  }
+
+  button:nth-of-type(2) {
+    color: var(--gray-0);
+    font-size: var(--title-3);
+    padding: 10px 22px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+
+    background: var(--gray-1);
+    :hover {
+      background: var(--gray-2);
+    }
+  }
+`;
