@@ -1,4 +1,4 @@
-import { Container, Title, Text, FormSelect } from './styles';
+import { Container, Title, Text, FormSelect, Label, Fieldset } from './styles';
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -74,24 +74,28 @@ const RegisterForm = () => {
         error={errors?.contact?.message}
       />
 
-      <FormSelect
-        name='course_module'
-        id='course_module'
-        {...register('course_module')}
-      >
-        <option value='Primeiro módulo (Introdução ao Frontend)'>
-          Primeiro módulo (Introdução ao Frontend)
-        </option>
-        <option value='Segundo módulo (Frontend Avançado)'>
-          Segundo módulo (Frontend Avançado)
-        </option>
-        <option value='Terceiro módulo (Introdução ao Backend)'>
-          Terceiro módulo (Introdução ao Backend)
-        </option>
-        <option value='Quarto módulo (Backend Avançado)'>
-          Quarto módulo (Backend Avançado)
-        </option>
-      </FormSelect>
+      <Fieldset>
+        <Label htmlFor={'course_module'}>Selecionar módulo</Label>
+
+        <FormSelect
+          name='course_module'
+          id='course_module'
+          {...register('course_module')}
+        >
+          <option value='Primeiro módulo (Introdução ao Frontend)'>
+            Primeiro módulo (Introdução ao Frontend)
+          </option>
+          <option value='Segundo módulo (Frontend Avançado)'>
+            Segundo módulo (Frontend Avançado)
+          </option>
+          <option value='Terceiro módulo (Introdução ao Backend)'>
+            Terceiro módulo (Introdução ao Backend)
+          </option>
+          <option value='Quarto módulo (Backend Avançado)'>
+            Quarto módulo (Backend Avançado)
+          </option>
+        </FormSelect>
+      </Fieldset>
 
       <Button color='primary' text='Cadastre-se' type='submit' />
     </Container>

@@ -28,6 +28,6 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 body{
-    background: var(--gray-4)
+    background: var(--gray-4);
 }
 `;

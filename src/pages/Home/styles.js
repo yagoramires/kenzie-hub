@@ -26,7 +26,7 @@ export const MainContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 24px;
+  gap: 21px;
 `;
 
 export const MainHeader = styled.div`
@@ -52,7 +52,6 @@ export const MainHeader = styled.div`
 `;
 
 export const Technologies = styled.div`
-  margin-top: 20px;
   padding: 22px;
   background: var(--gray-3);
   width: 100%;

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
   Container,
   CenterContainer,
@@ -23,7 +23,11 @@ const Home = () => {
   const [openModal, setOpenModal] = useState(false);
 
   const { user, handleLogout } = useContext(UserContext);
-  const { techs } = useContext(TechContext);
+  const { techs, getTechsData } = useContext(TechContext);
+
+  useEffect(() => {
+    getTechsData();
+  }, []);
 
   return (
     <Container>

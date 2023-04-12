@@ -66,7 +66,7 @@ export const FormSelect = styled.select`
   border: none;
   border-radius: 4px;
   padding: 16px;
-  color: var(--gray-0);
+  color: var(--gray-1);
   margin: 16px 0 8px;
   cursor: pointer;
 
@@ -103,7 +103,7 @@ export const FormInput = styled.input`
   border: none;
   border-radius: 4px;
   padding: 16px;
-  color: var(--gray-0);
+  color: var(--gray-1);
   margin: 16px 0 8px;
 
   ::placeholder {

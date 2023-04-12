@@ -63,10 +63,6 @@ export const TechProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    getTechsData();
-  }, []);
-
   return (
     <TechContext.Provider
       value={{
@@ -74,6 +70,7 @@ export const TechProvider = ({ children }) => {
         addTechOnApi,
         updateTechStatus,
         deleteTech,
+        getTechsData,
       }}
     >
       {children}

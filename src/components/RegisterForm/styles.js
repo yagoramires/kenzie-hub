@@ -48,3 +48,16 @@ export const FormSelect = styled.select`
     color: var(--gray-0);
   }
 `;
+
+export const Fieldset = styled.fieldset`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border: none;
+`;
+export const Label = styled.label`
+  color: var(--gray-0);
+  font-size: var(--headline);
+`;

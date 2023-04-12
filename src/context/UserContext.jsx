@@ -7,6 +7,7 @@ export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
@@ -37,15 +38,18 @@ export const UserProvider = ({ children }) => {
   const handleLogout = () => {
     localStorage.removeItem('@TOKEN');
     localStorage.removeItem('@USERID');
+    setUser(null);
     navigate('/login');
   };
 
   const handleMountPage = async () => {
+    setLoading(true);
     try {
       const token = localStorage.getItem('@TOKEN');
 
       if (!token) {
         navigate('/login');
+        setLoading(false);
         return;
       } else {
         const res = await api.get('/profile', {
@@ -60,10 +64,13 @@ export const UserProvider = ({ children }) => {
           navigate('/home');
         }
       }
+
+      setLoading(false);
     } catch (e) {
       localStorage.removeItem('@TOKEN');
       localStorage.removeItem('@USERID');
       navigate('/login');
+      setLoading(false);
     }
   };
 
@@ -73,7 +80,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ user, handleLogin, handleRegister, handleLogout }}
+      value={{ user, handleLogin, handleRegister, handleLogout, loading }}
     >
       {children}
     </UserContext.Provider>
